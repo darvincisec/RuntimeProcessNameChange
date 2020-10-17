@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
+#include <time.h>
 #include <android/log.h>
 
 extern const char* __progname;
@@ -20,6 +21,8 @@ void init(){
             "com.android.chrome:sandboxed_process0"
     };
     if( NULL != __progname ) {
+        time_t t;
+        srand((unsigned) time(&t));
         int value = rand()% (sizeof(processName)/sizeof(processName[0]));
         char* currProcName = (char*)__progname;
         __android_log_print(ANDROID_LOG_INFO, "Current Process Name:","[%s]", __progname);
